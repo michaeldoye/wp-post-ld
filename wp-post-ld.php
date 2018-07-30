@@ -40,14 +40,16 @@ if ( ! class_exists( 'WP_Post_LD' ) ) {
 		public function add_ld_script() {
 			global $post;
 
-			$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
-			$tags = array();
-			foreach ( get_the_tags( $post->ID ) as $key => $value ) {
-				$tags[$key] = $value->name;
-			}
-			$categories = get_the_category();
-
-			if ( is_single() && $post->post_type === "post" ) { ?>
+			if ( is_single() && $post->post_type === "post" ) { 
+				
+				$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'single-post-thumbnail' );
+				$tags = array();
+				foreach ( get_the_tags( $post->ID ) as $key => $value ) {
+					$tags[$key] = $value->name;
+				}
+				$categories = get_the_category();				
+				
+				?>
 				<script type="application/ld+json">
 				{
 					"@context": "http:\/\/schema.org",
